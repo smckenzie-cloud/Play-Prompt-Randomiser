@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Prompt Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #5a5a5a;
+        }
+        h2#randomTitle {
+            color: #0056b3;
+            min-height: 50px; /* Prevents layout shift */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        img#randomImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        p#randomQuote {
+            font-style: italic;
+            color: #444;
+            min-height: 80px; /* Prevents layout shift */
+            border-left: 3px solid #0056b3;
+            padding-left: 15px;
+            text-align: left;
+            margin: 20px auto;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Play Prompt Generator 🎭</h1>
+        <p>Click the button below to get a new random combination.</p>
+        
+        <h2 id="randomTitle">Your Title Will Appear Here</h2>
+        <img id="randomImage" src="" alt="A randomly selected image will appear here." style="display: none;">
+        <p id="randomQuote">Your quote will appear here.</p>
+
+        <button onclick="generateRandomCombination()">Generate New Prompt</button>
+    </div>
+
+    <script>
+        // --- DATA ARRAYS ---
+        
+        // Array of Titles from the provided document.
+        const titles = [
+            "The Rules of the Game",
+            "A Stage Without a Script",
+            "When the Audience Interrupts",
+            "Masks and Mirrors",
+            "Children at Play",
+            "The Game of Power",
+            "Improvised Truths",
+            "Playgrounds and Battlegrounds",
+            "The Last Laugh",
+            "The Play Within the Play",
+            "Serious Fun",
+            "Toy Soldiers",
+            "Hide and Seek",
+            "Rules Meant to Be Broken",
+            "Dancing on the Edge",
+            "Shadow Puppets",
+            "A Game of Chance",
+            "Carnival of Voices",
+            "Role-Playing",
+            "Make-Believe Kingdom",
+            "The Trickster’s Stage",
+            "Board Games and Bored Games",
+            "Rehearsing Reality",
+            "The Puppet Cuts the Strings",
+            "Playtime is Over"
+        ];
+
+        // Array of Quotes from the provided document.
+        const quotes = [
+            "“Play is the highest form of research.” - Albert Einstein",
+            "“We don’t stop playing because we grow old; we grow old because we stop playing.” - George Bernard Shaw",
+            "“Play is the exultation of the possible.” - Martin Buber",
+            "“It is a happy talent to know how to play.” - Ralph Waldo Emerson",
+            "“Play is the work of childhood.” - Jean Piaget",
+            "“Man is most nearly himself when he achieves the seriousness of a child at play.” - Heraclitus",
+            "“Almost all creativity involves purposeful play.” - Abraham Maslow",
+            "“Play gives children a chance to practice what they are learning.” - Mr. Rogers",
+            "“Play is the brain’s favourite way of learning.” - Diane Ackerman",
+            "“The creation of something new is not accomplished by the intellect but by the play instinct.” - Carl Jung",
+            "“In every real man a child is hidden that wants to play.” - Friedrich Nietzsche",
+            "“Play is training for the unexpected.” - Marc Bekoff",
+            "“Play is not a luxury. Play is a necessity.” - Kay Redfield Jamison",
+            "“Play is our brain’s way of putting it all together.” - Bruce Perry",
+            "“To play is to yield oneself to a kind of magic.” - Hugo Rahner",
+            "“The true object of all human life is play.” - G. K. Chesterton",
+            "“Life must be lived as play.” - Plato",
+            "“In our play, we reveal what kind of people we are.” - Ovid",
+            "“Play is the beginning of knowledge.” - George Dorsey",
+            "“When you cease to play, you cease to learn.” - Benjamin Franklin",
+            "“Play keeps us vital and alive. It gives us enthusiasm for life that is irreplaceable.” - Lucia Capocchione"
+        ];
+
+        // Corrected line: Looks for 33 images named 1.png, 2.png, etc., in the "images" folder.
+        const images = Array.from({length: 33}, (_, i) => `${i + 1}.png`);
+
+        // --- THE FUNCTION ---
+        
+        function generateRandomCombination() {
+            // 1. Get random items from each array
+            const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            const randomImageName = images[Math.floor(Math.random() * images.length)];
+
+            // 2. Find the HTML elements by their ID
+            const titleElement = document.getElementById('randomTitle');
+            const quoteElement = document.getElementById('randomQuote');
+            const imageElement = document.getElementById('randomImage');
+
+            // 3. Update the content and image source on the page
+            titleElement.textContent = randomTitle;
+            quoteElement.textContent = randomQuote;
+            imageElement.src = 'images/' + randomImageName; // Sets the correct image path
+            imageElement.style.display = 'block'; // Makes the image visible
+        }
+
+        // Optional: Generate a combination on first page load
+        window.onload = generateRandomCombination;
+    </script>
+
+</body>
+</html>
